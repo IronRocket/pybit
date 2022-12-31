@@ -1,14 +1,20 @@
 class bitarray:
     def __init__(self) -> None:
-        self.data = []
+        self.data = ()
     def appendbits(self, bits:tuple) -> None:
+        buffer = []
         for bit in bits:
             if str(type(bit)) == "<class \'bool\'>":
-                self.data.append(bit)
+                buffer.append(bit)
             else:
-                raise Exception("Expected boolean got {bit}")        
+                raise Exception(f"Expected boolean got {bit}")
+        self.data = tuple(buffer)    
     def raw_data(self) -> tuple:
-        return self.data 
+        return self.data
+
+    def pop(index:int) -> bool:
+        pass
+        
 
 
 
@@ -20,8 +26,19 @@ def str_binary_to_bool(string:str) -> tuple:
         elif char == "0":
             binary.append(False)
         else:
-            raise Exception("Expected binary(1,0) got {bit}")
+            raise Exception(f"Expected binary(1,0) got {char}")
     return tuple(binary)
+
+def bool_to_str_binary(bits:tuple) -> str:
+    str_binary = ""
+    for bit in bits:
+        if bit == True:
+            str_binary += "1"
+        elif bit == False:
+            str_binary += "0"
+        else:
+            raise Exception(f"Expected bool got {bit}")
+
 
 def decimal_to_binary(decimal:int) -> tuple:
     binary = []
