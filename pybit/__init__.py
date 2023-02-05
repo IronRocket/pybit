@@ -12,8 +12,11 @@ class bitarray:
     def raw_data(self) -> tuple:
         return self.data
 
-    def pop(index:int) -> bool:
-        pass
+    def pop(self,index:int) -> bool:
+        mutable = list(self.data)
+        poped_item = mutable.pop(index)
+        self.data = tuple(mutable)
+        return poped_item
         
 
 
