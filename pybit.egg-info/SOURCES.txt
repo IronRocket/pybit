@@ -1,0 +1,8 @@
+LICENSE
+README.md
+setup.py
+pybit/__init__.py
+pybit.egg-info/PKG-INFO
+pybit.egg-info/SOURCES.txt
+pybit.egg-info/dependency_links.txt
+pybit.egg-info/top_level.txt
