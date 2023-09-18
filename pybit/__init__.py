@@ -1,27 +1,26 @@
 class bitarray:
-    def __init__(self) -> None:
-        self.data = ()
+    def __init__(self,arr=()) -> None:
+        self.data = arr
     def appendbits(self, bits:tuple) -> None:
-        buffer = []
-        for bit in bits:
-            if str(type(bit)) == "<class \'bool\'>":
-                buffer.append(bit)
-            else:
-                raise Exception(f"Expected boolean got {bit}")
-        self.data = tuple(buffer)    
-    def raw_data(self) -> tuple:
+        """Appends tuple bools to raw tuple"""
+        self.data = self.data+tuple([bit for bit in bits if str(type(bit)) == "<class \'bool\'>"])
+    def core_data(self) -> tuple:
+        """Returns core tuple"""
         return self.data
 
     def pop(self,index:int) -> bool:
+        """Converts core tuple to list and pops (index)\n
+        Converts core list back into core tuple
+        """
         mutable = list(self.data)
         poped_item = mutable.pop(index)
         self.data = tuple(mutable)
         return poped_item
-        
 
 
 
 def str_binary_to_bool(string:str) -> tuple:
+    """Converts "101" -> (True,False,True)"""
     binary = []
     for char in string:
         if char == "1":
@@ -33,6 +32,7 @@ def str_binary_to_bool(string:str) -> tuple:
     return tuple(binary)
 
 def bool_to_str_binary(bits:tuple) -> str:
+    """Convert (True,False,True) -> "101" """
     str_binary = ""
     for bit in bits:
         if bit == True:
@@ -44,6 +44,7 @@ def bool_to_str_binary(bits:tuple) -> str:
 
 
 def decimal_to_binary(decimal:int) -> tuple:
+    """Convert 256 -> (False, False, False, False, False, False, False)"""
     binary = []
     while decimal/2 > 1:
         decimal = decimal/2
@@ -56,15 +57,20 @@ def decimal_to_binary(decimal:int) -> tuple:
     return tuple(binary)
 
 def binary_to_decimal(bits:tuple) -> tuple:
+    """Convert tuple binary to decimal"""
     decimal = 0
     length = len(bits)-1
     for bit in bits:
-        if bit == True:
+        if bit:
             decimal += 2**length
         length -= 1
     return decimal
 
 def binary_to_hex(bits:tuple) -> str:
+    """Convert (False,True,False) -> 0x1\n
+    Alternatives:
+        hex(pybit.binary_to_decimal((False,True,False)))
+    """
     conversion_table = {
         (False, False, False, False):"0",
         (False, False, False, True):"1",
@@ -84,17 +90,16 @@ def binary_to_hex(bits:tuple) -> str:
         (True, True, True, True):"f"
     }
     count = 0
-    hex = ""
+    str_hex = ''
     scope = []
     for bit in bits:
         scope.append(bit)
         count += 1
-
         if count == 4:
             count = 0
-            hex += conversion_table[tuple(scope)]
+            str_hex += conversion_table[tuple(scope)]
             scope = []
-    return hex
+    return str_hex
 
 
 

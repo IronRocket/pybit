@@ -16,7 +16,9 @@ print("Binary -> Decimal:",pybit.binary_to_decimal("1010"))
 print("Decimal -> Binary",pybit.decimal_to_binary(10))
 
 #Binary -> Hex
-print("Binary -> Hex",pybit.binary_to_hex("1010"))
+print("Binary -> Hex",pybit.binary_to_hex((True,False,True)))
+#Alternatives:
+print("Using built in funtion",hex(pybit.binary_to_decimal((True,False,True))))
 #--------------------------------------------------------------------------------
 
 
@@ -27,4 +29,4 @@ x = pybit.bitarray()
 
 x.appendbits((True,False))
 
-print("Tuple containing two bits:",x.raw_data())
+print("Tuple containing two bits:",x.core_data())
