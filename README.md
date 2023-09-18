@@ -1,6 +1,6 @@
 # What is it?
 
-Pybit is a libary written in python that allows you to convert binary to decimal, binary to hex. One of its key features is bit arrays.
+Pybit is a library written in python that allows you to convert binary to decimal, binary to hex. One of its key features is bit arrays.
 
 ## Conversions
 
@@ -26,6 +26,8 @@ print("Decimal -> Binary",pybit.decimal_to_binary(10))
 Binary -> Hex
 ```py
 print("Binary -> Hex",pybit.binary_to_hex("1010"))
+#Alternatives:
+print("Using built in funtion",hex(pybit.binary_to_decimal((True,False,True))))
 ```
 
 ## Bit Array
